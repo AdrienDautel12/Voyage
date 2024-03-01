@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+   <!-- Inclure Font Awesome (si vous ne l'avez pas déjà fait) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<form method="post" action="{% url 'reservation' %}">
+    {% csrf_token %}
+    <h1>Connexion</h1>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="password">Mot de passe:</label>
+    <div style="position: relative;">
+        <input type="password" id="password" name="password" value="" required>
+        <i class="far fa-eye" id="togglePassword" onclick="togglePasswordVisibility()"></i>
+    </div>
+    <input type="submit" value="Connexion">
+</form>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var icon = document.getElementById("togglePassword");
+        
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.remove("far", "fa-eye");
+            icon.classList.add("fas", "fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            icon.classList.remove("fas", "fa-eye-slash");
+            icon.classList.add("far", "fa-eye");
+        }
+    }
+</script>
+</body>
+</html>
